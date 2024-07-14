@@ -22,6 +22,11 @@ func startRepl(cfg *config) {
 			continue
 		}
 
+		args := []string{}
+		if len(cleanedinput) > 1 {
+			args = cleanedinput[1:]
+		}
+
 		command, ok := cliCommands[cleanedinput[0]]
 
 		if !ok {
@@ -29,7 +34,7 @@ func startRepl(cfg *config) {
 			continue
 		}
 
-		err := command.callback(cfg)
+		err := command.callback(cfg, args...)
 		if err != nil {
 			fmt.Println(err)
 		}
