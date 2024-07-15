@@ -22,10 +22,11 @@ func commandCatch(cfg *config, args ...string) error {
 	randNum := rand.Intn(pokemon.BaseExperience)
 	fmt.Println(pokemon.BaseExperience, randNum, threshhold)
 	if randNum > threshhold {
-		return fmt.Errorf("failed to catch %s", pokemon.Name)
+		return fmt.Errorf("failed to catch %s", pokemonName)
 	}
 
-	fmt.Printf("You caught a  %s!\n", pokemon.Name)
+	cfg.caughtPokemon[pokemonName] = pokemon
+	fmt.Printf("You caught a  %s!\n", pokemonName)
 
 	return nil
 }
