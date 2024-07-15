@@ -11,12 +11,14 @@ type config struct {
 	nextLocationAreaURL     *string
 	previousLocationAreaURL *string
 	caughtPokemon           map[string]pokeapi.Pokemon
+	catchThreshold          int
 }
 
 func main() {
 	cfg := config{
-		pokeapiClient: pokeapi.NewClient(time.Hour),
-		caughtPokemon: make(map[string]pokeapi.Pokemon),
+		pokeapiClient:  pokeapi.NewClient(time.Hour),
+		caughtPokemon:  make(map[string]pokeapi.Pokemon),
+		catchThreshold: 25,
 	}
 	startRepl(&cfg)
 }
